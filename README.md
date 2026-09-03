@@ -6,8 +6,7 @@ Run the commands below in a Bash shell from the repository root.
 ## Requirements
 
 - Docker with BuildKit.
-- NVIDIA GPU, driver, and NVIDIA Container Toolkit.
-- Internet access for the image build and initial checkpoint download.
+- NVIDIA Container Toolkit.
 - Python 3 for the Python client, or a C++17 compiler for the C++ client.
 
 ## Build
