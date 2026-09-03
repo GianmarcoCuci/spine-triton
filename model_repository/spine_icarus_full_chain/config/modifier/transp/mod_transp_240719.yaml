@@ -1,0 +1,19 @@
+# Transparency-correction modification for ICARUS configs
+# Revision date: July 19, 2024
+
+__meta__:
+  kind: mod
+  name: "transp"
+  version: "240719"
+  date: "2024-07-19"
+  description: "Transparency correction"
+  applies_to: [mc]
+  compatible_with:
+    post: "<=250115"
+  conflicts_with: [data]
+
+override:
+  # Add transparency correction
+  post.apply_calibrations.transparency:
+    run_id: 9435
+    transparency_db: /sdf/data/neutrino/icarus/db/v09_84_01/tpc_yz_correction_data.db

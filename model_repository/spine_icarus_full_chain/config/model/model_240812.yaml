@@ -1,0 +1,47 @@
+# ICARUS model configuration
+# Revision date: August 12, 2024
+
+__meta__:
+  kind: bundle
+  version: "240812"
+  date: "2024-08-12"
+  description: "ICARUS model with average charge rescaling, fixed PPN"
+  compatible_with:
+    base: ">=240719"
+    io: ">=240812"
+  tags: [average-charge, ppn-restrict]
+  training_set: "v2"
+
+include: model_common.yaml
+
+override:
+  # Path to the v2 restricted model weights
+  model.weight_path: !download
+    url: https://s3df.slac.stanford.edu/data/neutrino/spine/weights/icarus/icarus_snapshot_240812.ckpt
+    hash: c2de1c81c54fec9dfb64820788f4c6b9f7babc6679eb70f8d063353ea0092bdd
+
+  # No calibration applied in the chain, handled in post-processing
+  model.modules.chain.calibration: null
+  model.modules.calibration: null
+  model.network_input-:
+    - meta
+    - run_info
+
+  # Charge rescaling uses average charge
+  model.modules.chain.charge_rescaling: average
+
+  # Older PPN/GrapPA loss settings
+  model.modules.uresnet_ppn.ppn.classify_endpoints: false
+  model.modules.uresnet_ppn_loss.ppn_loss.restrict_to_clusters: true
+  model.modules.grappa_shower_loss.node_loss.use_closest: false
+
+  # Direction and dE/dx radii settings for GrapPA modules
+  model.modules.grappa_shower.node_encoder.dir_max_dist: -1
+  model.modules.grappa_shower.node_encoder.dedx_max_dist: -1
+  model.modules.grappa_track.node_encoder.dir_max_dist: -1
+  model.modules.grappa_track.node_encoder.dedx_max_dist: -1
+  model.modules.grappa_inter.node_encoder.dir_max_dist: -1
+  model.modules.grappa_inter.node_encoder.dedx_max_dist: -1
+
+  # Interaction grouping restriction not applied
+  model.modules.grappa_inter.nodes.grouping_through_track: false

@@ -1,0 +1,41 @@
+# Local Python environment and caches
+/.venv/
+/venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+
+# Compiled client and libraries
+/client_cpp
+*.o
+*.a
+*.so
+*.so.*
+
+# Input data, output files, and model weights
+/data/
+*.root
+*.npz
+*.h5
+*.hdf5
+*.ckpt
+*.pt
+*.pth
+*.onnx
+*.engine
+*.plan
+*.log
+
+# Local backups
+*.orig
+*.bak
+*.before-*
+
+# Local configuration and credentials
+.env
+.env.*
+!.env.example
+/.vscode/
+/.idea/
+.DS_Store
