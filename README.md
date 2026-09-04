@@ -47,9 +47,6 @@ curl --fail http://localhost:8000/v2/health/ready
 
 Stop the server with `docker stop spine-triton`.
 
-Neither profile enables the real-data calibration modifier automatically.
-That configuration requires the experiment database and trigger files under
-`/sdf`.
 
 ## Prepare an input event
 
